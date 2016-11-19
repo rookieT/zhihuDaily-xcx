@@ -1,0 +1,31 @@
+<!--index.wxml-->
+<view class="container">
+
+<view wx:if="{{isOk}}">
+
+<scroll-view  scroll-y="true" bindscrolltolower="loadMore" bindscrolltoupper="refresh" style="height:{{scrollHeight}}px">
+  <!--顶部轮播图-->
+  <swiper class="swiper-box" indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <swiper-item wx:for="{{top_list}}" wx:key="{{item.id}}">
+        <text class="slide-title">{{item.title}}</text>
+        <image mode="aspectFill" src="{{item.image}}" class="slide-image"/>
+      </swiper-item>
+  </swiper>
+
+  <!--news list-->
+  <view class="news-box" >
+    <view wx:for="{{list}}" wx:key="{{list.id}}">
+      <navigator url="../detail/detail?id={{item.id}}">
+        <view class="news-item">
+          <text>{{item.title}}</text>
+          <image src="{{item.images[0]}}"/>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</scroll-view>
+
+</view>
+<view wx:else><loading>加载中...</loading></view>
+</view>
